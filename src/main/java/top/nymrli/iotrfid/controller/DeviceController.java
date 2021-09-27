@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.nymrli.iotrfid.entity.Device;
 import top.nymrli.iotrfid.service.DeviceService;
+import top.nymrli.iotrfid.utils.JsonResult;
 
 /**
  * <p>
@@ -29,8 +30,8 @@ public class DeviceController {
     }
 
     @GetMapping
-    public Long get(Long id) {
-        return id;
+    public JsonResult get(Long id) {
+        return JsonResult.ok(deviceService.getById(id));
     }
 }
 
