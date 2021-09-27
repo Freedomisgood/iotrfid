@@ -4,10 +4,10 @@
 #ADD spring-boot-docker-1.0.jar app.jar
 #ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
-FROM maven:3
+FROM maven:3 as bd
 WORKDIR /code
 COPY ./ /code
-COPY settings.xml /etc/maven/settings.xml
+COPY settings-docker.xml /etc/maven/settings.xml
 RUN mvn package -Dmaven.test.skip=true
 
 FROM java:8
