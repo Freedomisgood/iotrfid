@@ -7,6 +7,7 @@
 FROM maven:3
 WORKDIR /code
 COPY ./ /code
+COPY settings.xml /etc/maven/settings.xml
 RUN mvn package -Dmaven.test.skip=true
 
 FROM java:8
