@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import top.nymrli.iotrfid.entity.Device;
 import top.nymrli.iotrfid.service.DeviceService;
 
-import javax.websocket.server.PathParam;
-
 /**
  * <p>
  * 前端控制器
@@ -30,8 +28,8 @@ public class DeviceController {
         return deviceService.save(device);
     }
 
-    @GetMapping("/{id}")
-    public Long get(@PathParam("id") Long id) {
+    @GetMapping
+    public Long get(Long id) {
         return id;
     }
 }
