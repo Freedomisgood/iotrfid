@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS `iot`;
 
 USE `iot`;
 
-CREATE TABLE IF NOT EXISTS `device`(
+CREATE TABLE IF NOT EXISTS `iotrfid_device`(
     `id` BIGINT(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
     `mac_id` VARCHAR(32) NOT NULL COMMENT '设备MAC地址',
     `created_time` DATETIME DEFAULT NOW() COMMENT '创建时间',

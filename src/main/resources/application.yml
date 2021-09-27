@@ -2,13 +2,15 @@
 spring:
   datasource:
     name: mydb
-    type: com.alibaba.druid.pool.DruidDataSource
+#    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://127.0.0.1:3306/iot?serverTimezone=UTC
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-mybatis:
-#  mapper-locations: classpath*:/mybatis/mapper/*Mapper.xml
+mybatis-plus:
+  mapper-locations: classpath*:xml/*Mapper.xml
+  type-aliases-package: top.nymrli.iotrfid.mapper
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

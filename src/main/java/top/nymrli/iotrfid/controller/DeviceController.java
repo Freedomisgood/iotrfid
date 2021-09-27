@@ -26,7 +26,7 @@ public class DeviceController {
 
     @PostMapping
     @ApiOperation(value = "新增设备", notes = "新增设备")
-    public boolean post(Device device) {
+    public boolean post(@RequestBody Device device) {
         return deviceService.save(device);
     }
 
@@ -41,6 +41,5 @@ public class DeviceController {
     public JsonResult findAll() {
         return JsonResult.ok(deviceService.list());
     }
-
 }
 
