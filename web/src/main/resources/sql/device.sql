@@ -9,3 +9,7 @@ CREATE TABLE IF NOT EXISTS `iotrfid_device`(
     `updated_time` DATETIME DEFAULT NOW() COMMENT '更新时间',
     PRIMARY KEY (`id`)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
+INSERT INTO `iotrfid_device` VALUES (1, "192.168.0.1", NOW(), NOW());
+INSERT INTO `iotrfid_device` VALUES (2, "192.168.0.2", NULL, NULL);
