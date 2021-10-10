@@ -12,4 +12,4 @@ RUN mvn package -Dmaven.test.skip=true
 
 FROM java:8
 COPY --from=bd /code/target/*.jar /app.jar
-CMD java -jar /app.jar
+CMD java -jar -Dspring.profiles.active=prod /app.jar

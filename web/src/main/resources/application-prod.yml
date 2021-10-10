@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+#    name: mydb
+#    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://mysqlhost:3306/iot?useSSL=false&useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath*:xml/*Mapper.xml
+  type-aliases-package: top.nymrli.iotrfid.mapper
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
