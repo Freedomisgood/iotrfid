@@ -3,7 +3,7 @@ spring:
   datasource:
     name: mydb
 #    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/iot?serverTimezone=UTC
+    url: jdbc:mysql://mysqlhost:3306/iot?serverTimezone=UTC
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
