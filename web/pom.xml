@@ -21,7 +21,6 @@
 
     <dependencies>
         <!--        mybatis-plus-->
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -33,7 +32,6 @@
             <scope>runtime</scope>
         </dependency>
         <!--        mybatis-plus-->
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -43,7 +41,6 @@
             <artifactId>druid</artifactId>
             <version>1.0.5</version>
         </dependency>
-
         <!--        mybatis-plus代码生成器-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -63,17 +60,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
+        <!--   lombok     -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--   lombok     -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,6 +85,16 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <!-- swagger -->
+
+        <!--   MQTT     -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!--   MQTT     -->
+
     </dependencies>
 
     <build>
