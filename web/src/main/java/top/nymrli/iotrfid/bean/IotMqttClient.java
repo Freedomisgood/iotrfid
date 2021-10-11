@@ -50,7 +50,7 @@ public class IotMqttClient {
     public void connect() {
         // clientId不能重复所以这里我设置为系统时间
         String clientId = String.valueOf(System.currentTimeMillis());
-        int qos = 1;
+        int qos = 0;
         try {
             // host为主机名，clientid即连接MQTT的客户端ID，一般以唯一标识符表示，MemoryPersistence设置clientid的保存形式，默认为以内存保存
             client = new MqttClient(host, clientId, new MemoryPersistence());
@@ -58,10 +58,8 @@ public class IotMqttClient {
             client.setCallback(new ReportMqtt());
             client.connect(makeUpMqttOption());
             // 将配置中的主题订阅
-            String[] topics = {topic};
-            for (String t : topics) {
-                subscribe(t, qos);
-            }
+//            String[] topics = {topic};
+            subscribe(topic, qos);
         } catch (Exception e){
             log.info("ReportMqtt客户端连接异常，异常信息：" + e);
         }

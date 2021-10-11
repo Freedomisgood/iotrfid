@@ -3,6 +3,7 @@ package top.nymrli.iotrfid.bean;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
@@ -18,10 +19,15 @@ public class ReportMqtt implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(String topic, MqttMessage message) {
+    public void messageArrived(String topic, MqttMessage message) throws MqttException {
         log.info("接收消息主题:" + topic);
         log.info("接收消息Qos:" + message.getQos());
         log.info("接收消息内容 :" + new String(message.getPayload()));
+        if ("/rfid/login".equals(topic)) {
+            System.out.println("发送前");
+            IotMqttClient.getInstance().publish("/rfid_callback", "200");
+            System.out.println("发送成功");
+        }
     }
 
     @Override

@@ -25,7 +25,7 @@ public class MqttController {
      * @throws MqttException
      */
     @ResponseBody
-    @PostMapping(value = "/mqtt/{topic}")
+    @PostMapping(value = "/mqtt")
     public ResponseEntity<String> sendMqtt(@RequestParam(value="topic") String topic,
                                            @RequestBody String message) throws MqttException {
         IotMqttClient.getInstance().publish(topic, message);
@@ -39,7 +39,7 @@ public class MqttController {
      * @throws MqttException
      */
     @ResponseBody
-    @PostMapping(value = "/mqtt/subs/{topic}")
+    @PostMapping(value = "/mqtt/subs")
     public ResponseEntity<String> sendMqtt(@RequestParam(value="topic") String topic) throws MqttException {
         IotMqttClient.getInstance().subscribe(topic);
         return new ResponseEntity<>("OK", HttpStatus.OK);
