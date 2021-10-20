@@ -1,12 +1,11 @@
 package top.nymrli.iotrfid.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import top.nymrli.iotrfid.entity.Device;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import top.nymrli.iotrfid.entity.Device;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Mrli

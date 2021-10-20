@@ -19,28 +19,29 @@ import top.nymrli.iotrfid.bean.IotMqttClient;
 public class MqttController {
     /**
      * 发送MQTT消息
-     * @param topic 订阅的主题
+     *
+     * @param topic   订阅的主题
      * @param message 要发送的信息
      * @return 操作结果
      * @throws MqttException
      */
-    @ResponseBody
     @PostMapping(value = "/mqtt")
-    public ResponseEntity<String> sendMqtt(@RequestParam(value="topic") String topic,
+    public ResponseEntity<String> sendMqtt(@RequestParam(value = "topic") String topic,
                                            @RequestBody String message) throws MqttException {
         IotMqttClient.getInstance().publish(topic, message);
+        System.out.println(topic + " " + message);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     /**
      * MQTT订阅主题
+     *
      * @param topic 待订阅的主题
      * @return 操作结果
      * @throws MqttException
      */
-    @ResponseBody
     @PostMapping(value = "/mqtt/subs")
-    public ResponseEntity<String> sendMqtt(@RequestParam(value="topic") String topic) throws MqttException {
+    public ResponseEntity<String> sendMqtt(@RequestParam(value = "topic") String topic) throws MqttException {
         IotMqttClient.getInstance().subscribe(topic);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }

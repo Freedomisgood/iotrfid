@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Mrli
@@ -25,7 +25,7 @@ import java.util.Date;
 @ApiModel(value = "Device对象", description = "设备")
 public class Device implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
     /**
      * 主键id
      */
