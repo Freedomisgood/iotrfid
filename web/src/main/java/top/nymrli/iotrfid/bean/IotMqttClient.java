@@ -109,10 +109,9 @@ public class IotMqttClient {
         if (null == mTopic) {
             log.error("topic not exist");
         }
-        MqttDeliveryToken token;
         try {
-            token = mTopic.publish(message);
-            token.waitForCompletion();
+            MqttDeliveryToken token = mTopic.publish(message);
+//            token.waitForCompletion();
         } catch (MqttPersistenceException e) {
             e.printStackTrace();
         } catch (MqttException e) {
