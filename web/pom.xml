@@ -94,7 +94,11 @@
             <version>1.2.5</version>
         </dependency>
         <!--   MQTT     -->
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
+        </dependency>
     </dependencies>
 
     <build>

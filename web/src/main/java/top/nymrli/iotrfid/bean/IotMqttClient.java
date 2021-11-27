@@ -3,12 +3,9 @@ package top.nymrli.iotrfid.bean;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,33 +18,15 @@ import java.util.List;
 @Component
 @PropertySource("classpath:mqtt.properties")
 public class IotMqttClient {
-    @Value("${url}")
-    public String host;
-    @Value("${consumer.defaultTopic}")
-    public String topic;
-    @Value("${username}")
-    private String name;
-    @Value("${password}")
-    private String passWord;
+    public String host = "tcp://49.235.118.244:1883";
+    public String topic = "/rfid/#";
+    private String name = "";
+    private String passWord = "";
 
     private MqttClient client;
-    private static volatile IotMqttClient iotMqttClient = null;
     private static List<String> subedTopics = new ArrayList<>();
 
-    @Bean
-    public static IotMqttClient getInstance() throws MqttException {
-        if (null == iotMqttClient) {
-            synchronized (IotMqttClient.class) {
-                if (null == iotMqttClient) {
-                    iotMqttClient = new IotMqttClient();
-                }
-            }
-        }
-        return iotMqttClient;
-    }
-
-    @PostConstruct
-    public void connect() {
+    public IotMqttClient() {
         // clientId不能重复所以这里我设置为系统时间
         String clientId = String.valueOf(System.currentTimeMillis());
         int qos = 0;
@@ -55,15 +34,12 @@ public class IotMqttClient {
             // host为主机名，clientid即连接MQTT的客户端ID，一般以唯一标识符表示，MemoryPersistence设置clientid的保存形式，默认为以内存保存
             client = new MqttClient(host, clientId, new MemoryPersistence());
             // 设置回调
-            client.setCallback(new ReportMqtt());
+            client.setCallback(new ReportMqtt(this));
             client.connect(makeUpMqttOption());
-            // 将配置中的主题订阅
-//            String[] topics = {topic};
             subscribe(topic, qos);
         } catch (Exception e){
             log.info("ReportMqtt客户端连接异常，异常信息：" + e);
         }
-
     }
 
     private MqttConnectOptions makeUpMqttOption(){
@@ -141,9 +117,5 @@ public class IotMqttClient {
         } catch (MqttException e) {
             e.printStackTrace();
         }
-    }
-
-    public static List<String> getSubedTopics() {
-        return subedTopics;
     }
 }

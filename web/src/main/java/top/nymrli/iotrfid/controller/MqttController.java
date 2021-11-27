@@ -7,6 +7,7 @@ package top.nymrli.iotrfid.controller;
  **/
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,14 @@ import top.nymrli.iotrfid.bean.IotMqttClient;
 
 /**
  * MQTT消息发送
+ *
+ * @author mrli
  */
 @RestController
 public class MqttController {
+    @Autowired
+    private IotMqttClient iotMqttClient;
+
     /**
      * 发送MQTT消息
      *
@@ -28,7 +34,7 @@ public class MqttController {
     @PostMapping(value = "/mqtt")
     public ResponseEntity<String> sendMqtt(@RequestParam(value = "topic") String topic,
                                            @RequestBody String message) throws MqttException {
-        IotMqttClient.getInstance().publish(topic, message);
+        iotMqttClient.publish(topic, message);
         System.out.println(topic + " " + message);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
@@ -42,7 +48,7 @@ public class MqttController {
      */
     @PostMapping(value = "/mqtt/subs")
     public ResponseEntity<String> sendMqtt(@RequestParam(value = "topic") String topic) throws MqttException {
-        IotMqttClient.getInstance().subscribe(topic);
+        iotMqttClient.subscribe(topic);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 }
