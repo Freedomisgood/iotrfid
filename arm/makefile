@@ -6,6 +6,7 @@ CXX = arm-linux-g++
 CFLAGS = -g -Wall -c $(INCLUDES) 
 LIBS = -L ./lib -lssl -lcurl -lcrypto
 
+
 mes:clean $(OBJS) 
 	$(CXX) -o mes $(OBJS) $(LIBS) -lpthread -lsqlite3 -lrt -lmosquitto -lcjson -lstdc++ -lcurl
 main.o : main.c  

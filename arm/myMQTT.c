@@ -328,13 +328,13 @@ struct mosquitto* mqtt_init(void *message_callback, void *connect_callback)
 	return mosq;
 }
 
+
 int mqtt_quit(struct mosquitto *mosq)
 {
 	mosquitto_destroy(mosq);
 	mosquitto_lib_cleanup();
 	return 0;
 }
-
 /**
  * 发布主题消息
  **/

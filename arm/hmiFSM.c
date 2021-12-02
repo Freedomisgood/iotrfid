@@ -83,6 +83,9 @@ void FSM_init(struct MQTTReturn *mr,struct CurState cs[5] )
 	memset(cs[STATE_RFID].rfid,0,SIZE_RFID);
 
 }
+
+
+
 void *th_hmiFSM()
 {
 	int scnid		=-1,wdgid=-1,btnup;
@@ -451,8 +454,8 @@ void *th_hmiFSM()
 
 				/* avoid the situation of screen close depently */
 				//scn_cmd_settext(STATE_MAIN,WDG_TX_USER	,&mr);
-				//mqtt_send_cmd(TASKGET,mac,NULL,NULL,mr.ud.employId,NULL,NULL,page);
-				mqtt_send_cmd(RFIDLOGIN,mac,NULL,NULL,NULL,mr.rfid,NULL,0);
+				mqtt_send_cmd(TASKGET,mac,NULL,NULL,mr.ud.employId,NULL,NULL,page);
+				// mqtt_send_cmd(RFIDLOGIN,mac,NULL,NULL,NULL,mr.rfid,NULL,0);
 			}
 			else if(mr.login == NOTLOGIN)
 			{
@@ -531,7 +534,7 @@ void *th_hmiFSM()
 					{
 						/* avoid switch screen depently*/
 						scn_cmd_switch( STATE_MAIN	);
-
+						
 
 					}
 					break;
