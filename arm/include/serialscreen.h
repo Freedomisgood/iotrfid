@@ -1,10 +1,4 @@
 /*
- * @Author: Mrli
- * @Date: 2021-09-26 10:31:31
- * @LastEditTime: 2021-10-09 09:11:40
- * @Description: 
- */
-/*
  * print.h
  *
  *  Created on: Oct 14, 2020
@@ -29,13 +23,12 @@
 
 /* for resolve */
 #define	POS_TYPE	7
-44 + 24 = 68 / 4 = 17
-54 + 24 = 78 /4 
+
 /* extra 1byte type 0x11 or 0x1D*/
 #define	POS_USER	8
 #define	POS_PASS	8
 #define	POS_OD_RCD	8
-//EE B1 11 00   01 00 01 11    31 30 30 31     BA C5 00FF  FC  FF FF
+//EE B1 11 00 01 00 01 11 31 30 30 31 BA C5 00FF FC FF FF
 typedef	struct ComFrame
 {
 	int		frmlen;

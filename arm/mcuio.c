@@ -50,7 +50,7 @@ int getID()
 	clifd=socket(AF_INET,SOCK_DGRAM,0);//ipv4,SOCK_DGRAM=no connect
 	if(clifd<0)
 	{
-		perror("socke failed");
+		perror("socket failed");
 		return -1;
 	}
 

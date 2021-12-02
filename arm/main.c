@@ -56,48 +56,20 @@ pthread_mutex_t mutex_printrecvqueue;		//发送队列资源锁
 
 void sysinit()
 {
-	getMac(mac);
-	get_dev_info();
-	printf("----获取MQTT连接信息----\n");
-	get_mqtt_info();
-	get_factory_info();
-
-	get_mqtt_topic(topic_send);
-
-	//sprintf(topic_send,"%s/%s/%s/mes_ack","yuanhong","lasi",mac);
-	sprintf(topic_serialscreen,"%s/%s/mes_ack",factory_name,mac);
-
-	//gatewayid = getID();
 
 	printf("----成功获取连接信息----\n");
-	//UART232ID	=	uartInit115200(UART232DIR);
-	//UART485ID	=	uartInit9600(UART485DIR);
-
-	//UART_PTR_ID		=	uartInit115200(UART_PTR_DIR);
-	UART_PTR_ID		=	uartInit9600(UART_PTR_DIR);
-	UART_SCN_ID		=	uartInit9600(UART_SCN_DIR);
-	//UART_SCN_ID		=	uartInit115200(UART_SCN_DIR);
-	//UART_RFID_ID	=	uartInit9600(UART_RFID_DIR);
-	UART_CAMERA_ID	=	uartInit2(UART_CAMERA_DIR,230400);
+	UART_RFID_ID	=	uartInit9600(UART_RFID_DIR);
 
 	qrfid		=	InitQueue();
-	qscreensend	=	InitQueue();
-	qscreenrecv	=	InitQueue();
-	qprintrecv	=	InitQueue();
 
 	qmqttsend	= 	InitCQueue();
 	qmqttrecv	= 	InitCQueue();
 
 	pthread_mutex_init(&mutex_rfidqueue, NULL);
-	pthread_mutex_init(&mutex_scnsendqueue, NULL);
-	pthread_mutex_init(&mutex_scnrecvqueue, NULL);
 	pthread_mutex_init(&mutex_mqttsendqueue, NULL);
 	pthread_mutex_init(&mutex_mqttrecvqueue, NULL);
-	pthread_mutex_init(&mutex_printrecvqueue, NULL);
 
 }
-
-
 int main(int argc, char **argv)
 {
 	int err;
@@ -119,13 +91,6 @@ int main(int argc, char **argv)
 
 	sysinit();
 
-	/* request print command */
-	err = pthread_create(&th_print_id, NULL, (void*) th_print, NULL);
-	if(err != 0)
-	{
-		printf("can't create th_print_id: %s\n",strerror(err));
-		exit(-1);
-	}
 
 	/* mqtt send thread */
 	err = pthread_create(&th_mqtt_send_id, NULL, (void*) th_mqtt_send, NULL);
@@ -140,22 +105,6 @@ int main(int argc, char **argv)
 	if(err != 0)
 	{
 		printf("can't create th_recv_id: %s\n",strerror(err));
-		exit(-1);
-	}
-
-	/* send screen command */
-	err = pthread_create(&th_serialscreen_send_id, NULL, (void*) th_serialscreen_send, NULL);
-	if(err != 0)
-	{
-		printf("can't create th_print_id: %s\n",strerror(err));
-		exit(-1);
-	}
-
-	/* receive screen command */
-	err = pthread_create(&th_serialscreen_recv_id, NULL, (void*) th_serialscreen_recv, NULL);
-	if(err != 0)
-	{
-		printf("can't create th_serialscreen_id: %s\n",strerror(err));
 		exit(-1);
 	}
 
@@ -176,16 +125,11 @@ int main(int argc, char **argv)
 		exit(-1);
 	}
 
-	pthread_join(th_print_id, NULL);
 	pthread_join(th_mqtt_send_id, NULL);
 	pthread_join(th_mqtt_recv_id, NULL);
-	pthread_join(th_serialscreen_send_id, NULL);
-	pthread_join(th_serialscreen_recv_id, NULL);
 	pthread_join(th_hmiFSM_id, NULL);
 
 	pthread_mutex_destroy(&mutex_rfidqueue);
-	pthread_mutex_destroy(&mutex_scnsendqueue);
-	pthread_mutex_destroy(&mutex_scnrecvqueue);
 	pthread_mutex_destroy(&mutex_mqttsendqueue);
 	pthread_mutex_destroy(&mutex_mqttrecvqueue);
 

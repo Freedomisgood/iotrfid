@@ -55,9 +55,9 @@ void get_mqtt_info(void)
 	int rc;
 	char *zErrMsg = 0;
 	sqlite3 *db;
-
 	char sql_mqtt[128] =
 			"SELECT serverAddr, serverPort FROM mqttInfo WHERE isUsed = 1;";
+	
 
 	pthread_mutex_lock(&db_mtx);
 	rc = sqlite3_open(database_path, &db);

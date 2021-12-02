@@ -1,12 +1,14 @@
 OBJS =  base64.o faceSearch.o camera.o CRC.o cQueue.o myQueue.o myUart.o info.o mcuio.o global.o print.o myMQTT.o rfid.o serialscreen.o sscreenupdate.o hmiFSM.o main.o
-
+#INCLUDES = -I ./include/ -I mosquitto-1.4.11/lib/  sscreenupdate.o
 INCLUDES = -I ./include/ 
-CC = arm-linux-gcc
-CXX = arm-linux-g++
+# CC = arm-linux-gcc
+# CXX = arm-linux-g++
+CC = /home/mowang/labenvironment/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+CXX = /home/mowang/labenvironment/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
 CFLAGS = -g -Wall -c $(INCLUDES) 
-LIBS = -L ./lib -lssl -lcurl -lcrypto
+LIBS = -L ./lib -lssl -lcurl -lcrypto 
 
-
+#arm-linux-gcc test.c -I./org.eclipse.mosquitto/lib/ -L./org.eclipse.mosquitto/lib -lmosquitto -lpthread -lrt
 mes:clean $(OBJS) 
 	$(CXX) -o mes $(OBJS) $(LIBS) -lpthread -lsqlite3 -lrt -lmosquitto -lcjson -lstdc++ -lcurl
 main.o : main.c  
@@ -51,8 +53,3 @@ clean :
 	rm $(OBJS)  mes monitor -rf
 update:
 	scp ./smartlib root@10.82.80.234:/var/www/smartlibrary-update/
-
-
-
-
-g++ -o xxx.exe main.c -c print.o -c 

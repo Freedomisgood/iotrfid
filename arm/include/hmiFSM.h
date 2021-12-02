@@ -131,7 +131,6 @@ typedef struct UserData
 	char	realName[64];
 	char	employId[64];
 }UserData,*UserDataP;
-
 typedef struct TaskData
 {
 	char	clientId[64];
@@ -167,8 +166,6 @@ typedef struct TaskData
 	char	alarmdata[SIZE_PRINT_MSG];
 	struct  TaskData* next;
 }TaskData,*TaskDataP;
-
-
 typedef	struct MQTTReturn
 {
 	/* describe mqtt request session*/

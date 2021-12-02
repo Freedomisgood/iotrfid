@@ -6,8 +6,8 @@
 
 extern char mac[];
 
-char topic_send[256];
-char topic_serialscreen[256];
+// char topic_send[256];
+// char topic_serialscreen[256];
 
 
 

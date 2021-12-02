@@ -121,7 +121,6 @@ void *th_rfid_recv(void)
 							{
 								rfidlen		= temp[i+1] - RFID_HEADER_LEN - RFID_TYPE_LEN - RFID_TAILER_LEN;
 								itm->frmlen = rfidlen;
-								// 跳过RDIF头和类型长度后的即为RDIF卡中的Data数据
 								memcpy(itm->data,temp+i+RFID_HEADER_LEN+RFID_TYPE_LEN,rfidlen);
 
 								pthread_mutex_lock(&mutex_rfidqueue);

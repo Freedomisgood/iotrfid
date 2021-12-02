@@ -7,10 +7,11 @@
 //#define UART485DIR		"/dev/ttySP2"  
 //#define UART232DIR		"/dev/ttySP0"
 
-#define UART_PTR_DIR	"/dev/ttySP0"
-#define UART_SCN_DIR	"/dev/ttySP1"  
-//#define UART_RFID_DIR	"/dev/ttySP2"  
-#define UART_CAMERA_DIR	"/dev/ttySP2"  
+// #define UART_PTR_DIR	"/dev/ttySP0"
+// #define UART_SCN_DIR	"/dev/ttySP1"  
+// //#define UART_RFID_DIR	"/dev/ttySP2"  
+// #define UART_CAMERA_DIR	"/dev/ttySP2"  
+#define UART_RFID_DIR	"/dev/ttyS1"  
 
 #define DEBUG			1
 #define DEBUG_DEV 		1
